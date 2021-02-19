@@ -170,17 +170,17 @@ exp4  : exp5
   ;
   
 exp5  : primaire 
-        (    '*'   primaire 
+        (    '*'   primaire
           | 'div'  primaire 
         )*
   ;
   
 primaire: valeur 
-  | ident  
+  | ident {PtGen.pt(2)}
   | '(' expression ')'
   ;
   
-valeur  : nbentier 
+valeur  : nbentier {PtGen.pt(1)}
   | '+' nbentier 
   | '-' nbentier 
   | 'vrai' 

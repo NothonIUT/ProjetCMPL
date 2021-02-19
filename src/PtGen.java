@@ -228,8 +228,12 @@ public class PtGen {
 			afftabSymb(); // affichage de la table des symboles en fin de compilation
 			break;
 
-		// TODO
-		
+		case 1 :
+			int valeur = UtilLex.valEnt;
+			System.out.println(valeur);
+		case 2 :
+			String ident = UtilLex.chaineIdent(UtilLex.numIdCourant);
+			System.out.println(ident);
 		default:
 			System.out.println("Point de generation non prevu dans votre liste");
 			break;
