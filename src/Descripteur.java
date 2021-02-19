@@ -1,6 +1,6 @@
 import java.io.InputStream;
 import java.io.OutputStream;
-
+// Coucou
 /** classe necessaire a la COMPILATION SEPAREE d'un programme et de modules
  * 		attributs a definir pour une unite compilee
  * 		+ methodes de consulation, de modification, 
