@@ -13,7 +13,7 @@ import java.io.OutputStream;
 
 public class Descripteur {
 		
-	
+	//test
 	/**  classe interne EltDef definissant 
 	 * 	 le type de chaque element de la table des points d'entree tabDef
 	 */
