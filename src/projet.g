@@ -50,7 +50,7 @@ unitmodule
   ;
   
 declarations
-  : partiedef? partieref? consts? vars? decprocs? 
+  : partiedef? partieref? consts? vars? decprocs? {PtGen.pt(8)}
   ;
   
 partiedef
@@ -64,14 +64,13 @@ specif  : ident  ( 'fixe' '(' type  ( ',' type  )* ')' )?
                  ( 'mod'  '(' type  ( ',' type  )* ')' )? 
   ;
   
-consts  : 'const' ( ident  '=' valeur  ptvg  )+ 
+consts  : 'const' ( ident  '=' valeur {PtGen.pt(1)}  ptvg  )+ ;
+  
+vars  : 'var' ( type ident {PtGen.pt(2)} ( ','  ident  {PtGen.pt(2)})* ptvg  )+
   ;
   
-vars  : 'var' ( type ident  ( ','  ident  )* ptvg  )+
-  ;
-  
-type  : 'ent'  
-  |     'bool' 
+type  : 'ent'  {PtGen.pt(6)}
+  |     'bool'  {PtGen.pt(7)}
   ;
   
 decprocs: (decproc ptvg)+
@@ -125,7 +124,7 @@ inscond : 'cond'  expression  ':' instructions
 boucle  : 'ttq'  expression 'faire' instructions 'fait' 
   ;
   
-lecture: 'lire' '(' ident  ( ',' ident  )* ')' 
+lecture: 'lire' '(' ident  {PtGen.pt(9)} ( ',' ident {PtGen.pt(9)} )* ')' 
   ;
   
 ecriture: 'ecrire' '(' expression  ( ',' expression  )* ')'
@@ -143,48 +142,48 @@ effixes : '(' (expression  (',' expression  )*)? ')'
 effmods :'(' (ident  (',' ident  )*)? ')'
   ; 
   
-expression: (exp1) ('ou'  exp1  )*
+expression: (exp1) {PtGen.pt(11)} ('ou'  exp1  )* {PtGen.pt(12)}
   ;
   
-exp1  : exp2 ('et'  exp2  )*
+exp1  : exp2 {PtGen.pt(13)} ('et'  exp2  )* {PtGen.pt(14)}
   ;
   
-exp2  : 'non' exp2 
-  | exp3  
+exp2  : 'non' exp2 {PtGen.pt(15)}
+  | exp3  {PtGen.pt(16)}
   ;
   
-exp3  : exp4 
-  ( '='   exp4 
-  | '<>'  exp4 
-  | '>'   exp4 
-  | '>='  exp4 
-  | '<'   exp4 
-  | '<='  exp4  
+exp3  : exp4 {PtGen.pt(17)}
+  ( '='   exp4 {PtGen.pt(18)}
+  | '<>'  exp4 {PtGen.pt(19)}
+  | '>'   exp4 {PtGen.pt(20)}
+  | '>='  exp4 {PtGen.pt(21)}
+  | '<'   exp4 {PtGen.pt(22)}
+  | '<='  exp4  {PtGen.pt(23)}
   ) ?
   ;
   
-exp4  : exp5 
-        ('+'  exp5 
-        |'-'  exp5 
+exp4  : exp5 {PtGen.pt(24)}
+        ('+'  exp5 {PtGen.pt(25)}
+        |'-'  exp5 {PtGen.pt(26)}
         )*
   ;
   
-exp5  : primaire 
-        (    '*'   primaire
-          | 'div'  primaire 
+exp5  : primaire {PtGen.pt(27)}
+        (    '*'   primaire {PtGen.pt(28)}
+          | 'div'  primaire {PtGen.pt(29)}
         )*
   ;
   
-primaire: valeur 
-  | ident {PtGen.pt(2)}
+primaire: valeur
+  | ident
   | '(' expression ')'
   ;
   
-valeur  : nbentier {PtGen.pt(1)}
-  | '+' nbentier 
-  | '-' nbentier 
-  | 'vrai' 
-  | 'faux' 
+valeur  : nbentier
+  | '+' nbentier
+  | '-' nbentier {PtGen.pt(3)}
+  | 'vrai' {PtGen.pt(4)}
+  | 'faux' {PtGen.pt(5)}
   ;
 
 // partie lexicale  : cette partie ne doit pas etre modifiee  //

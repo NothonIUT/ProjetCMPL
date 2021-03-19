@@ -50,7 +50,7 @@ unitmodule
   ;
   
 declarations
-  : partiedef? partieref? consts? vars? decprocs? 
+  : partiedef? partieref? consts? vars? decprocs? {PtGen.pt(8)}
   ;
   
 partiedef
@@ -64,14 +64,13 @@ specif  : ident  ( 'fixe' '(' type  ( ',' type  )* ')' )?
                  ( 'mod'  '(' type  ( ',' type  )* ')' )? 
   ;
   
-consts  : 'const' ( ident  '=' valeur  ptvg  )+ 
+consts  : 'const' ( ident  '=' valeur {PtGen.pt(1)}  ptvg  )+ ;
+  
+vars  : 'var' ( type ident {PtGen.pt(2)} ( ','  ident  {PtGen.pt(2)})* ptvg  )+
   ;
   
-vars  : 'var' ( type ident  ( ','  ident  )* ptvg  )+
-  ;
-  
-type  : 'ent'  
-  |     'bool' 
+type  : 'ent'  {PtGen.pt(6)}
+  |     'bool'  {PtGen.pt(7)}
   ;
   
 decprocs: (decproc ptvg)+
@@ -125,7 +124,7 @@ inscond : 'cond'  expression  ':' instructions
 boucle  : 'ttq'  expression 'faire' instructions 'fait' 
   ;
   
-lecture: 'lire' '(' ident  ( ',' ident  )* ')' 
+lecture: 'lire' '(' ident  {PtGen.pt(9)} ( ',' ident {PtGen.pt(9)} )* ')' 
   ;
   
 ecriture: 'ecrire' '(' expression  ( ',' expression  )* ')'
@@ -175,16 +174,16 @@ exp5  : primaire
         )*
   ;
   
-primaire: valeur 
-  | ident {PtGen.pt(2)}
+primaire: valeur
+  | ident
   | '(' expression ')'
   ;
   
-valeur  : nbentier {PtGen.pt(1)}
-  | '+' nbentier 
-  | '-' nbentier 
-  | 'vrai' 
-  | 'faux' 
+valeur  : nbentier
+  | '+' nbentier
+  | '-' nbentier {PtGen.pt(3)}
+  | 'vrai' {PtGen.pt(4)}
+  | 'faux' {PtGen.pt(5)}
   ;
 
 // partie lexicale  : cette partie ne doit pas etre modifiee  //

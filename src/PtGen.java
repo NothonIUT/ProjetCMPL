@@ -62,7 +62,8 @@ public class PtGen {
     //valeurs possible du vecteur de translation 
     TRANSDON=1,TRANSCODE=2,REFEXT=3;
 
-
+	
+	private static int cptVarGlobales;
     // utilitaires de controle de type
     // -------------------------------
     /**
@@ -140,7 +141,7 @@ public class PtGen {
 	 */
 	private static int presentIdent(int borneInf) {
 		int i = it;
-		while (i >= borneInf && tabSymb[i].code != UtilLex.numIdCourant)
+		while (i >= borneInf && tabSymb[i].code != UtilLex.numId)
 			i--;
 		if (i >= borneInf)
 			return i;
@@ -160,7 +161,7 @@ public class PtGen {
 		if (it == MAXSYMB)
 			UtilLex.messErr("debordement de la table des symboles");
 		it = it + 1;
-		tabSymb[it] = new EltTabSymb(code, cat, type, info);
+		tabSymb[it] = new EltTabSymb(code, 2, type, info);
 	}
 
 	/**
@@ -209,7 +210,9 @@ public class PtGen {
 	
 		// initialisation du type de l'expression courante
 		tCour = NEUTRE;
-
+		
+		// initiatlisation du nombre de variables globales déclarées
+		cptVarGlobales = 0;
 	} // initialisations
 
 	/**
@@ -224,16 +227,74 @@ public class PtGen {
 			initialisations();
 			break;
 
-                case 255 : 
-			afftabSymb(); // affichage de la table des symboles en fin de compilation
+		case 1 : // consts
+			if(presentIdent(1) == 0){
+				//Ajouter
+				placeIdent(UtilLex.numId, 1, 1, vCour);
+			}else {
+				UtilLex.messErr("Constante déjà déclarée." );
+			}
 			break;
-
-		case 1 :
-			int valeur = UtilLex.valEnt;
-			System.out.println(valeur);
+		
 		case 2 :
-			String ident = UtilLex.chaineIdent(UtilLex.numIdCourant);
-			System.out.println(ident);
+			if(presentIdent(1) == 0) {
+				placeIdent(UtilLex.numId, 0, tCour, cptVarGlobales);
+				cptVarGlobales++;
+			}else {
+				UtilLex.messErr("Variable déjà déclarée");
+			}
+			break;
+			
+		// Lecture de valeur
+		case 3 : // '-' nbentier
+			vCour = (-1) * vCour;
+			break;
+		case 4 : // 'vrai"
+			vCour = 1;
+			break;
+		case 5 :
+			vCour = 0;
+			break;
+			
+		// Lecture du type
+		case 6 :
+			tCour = ENT;
+			break;
+		case 7 :
+			tCour = BOOL;
+			break;	
+			
+		// declaration
+		case 8 :
+			po.produire(RESERVER);
+			po.produire(cptVarGlobales);
+			break;
+		// lecture
+		case 9 :
+			if (tCour == ENT) {
+				po.produire(LIRENT);
+			}else if(tCour == BOOL){
+				po.produire(LIREBOOL);
+			}
+			break;
+			
+		// ecriture
+		case 10 :
+			if(tCour == ENT) {
+				po.produire(ECRENT);
+			}else if (tCour == BOOL) {
+				po.produire(ECRBOOL);
+			}
+			break;
+			
+		// expression
+		case 11 :
+			
+			break;
+			
+        case 255 : 
+        	afftabSymb(); // affichage de la table des symboles en fin de compilation
+        	break;
 		default:
 			System.out.println("Point de generation non prevu dans votre liste");
 			break;
