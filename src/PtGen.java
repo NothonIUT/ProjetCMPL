@@ -288,10 +288,126 @@ public class PtGen {
 			break;
 			
 		// expression
-		case 11 :
+		// Les case 11 et 15 sont utilisés pour vérifier que l'expression est bien de type booléenne ou entière
 			
+		case 11 :
+			verifBool();
+			break;
+		
+		case 15 :
+			verifEnt();
 			break;
 			
+		// Production des opérations entre expressions
+		case 12 :
+			po.produire(OU);
+			break;
+			
+		case 13 :
+			po.produire(ET);
+			break;
+		
+		case 14 :
+			po.produire(NON);
+			break;
+		
+		case 16 :
+			po.produire(EG);
+			tCour = BOOL;
+			break;
+		
+		case 17 :
+			po.produire(DIFF);
+			tCour = BOOL;
+			break;
+		
+		case 18 :
+			po.produire(SUP);
+			tCour = BOOL;
+			break;
+			
+		case 19 :
+			po.produire(SUPEG);
+			tCour = BOOL;
+			break;
+		
+		case 20 :
+			po.produire(INF);
+			tCour = BOOL;
+			break;
+			
+		case 21 :
+			po.produire(INFEG);
+			tCour = BOOL;
+			break;
+			
+		case 22 :
+			po.produire(ADD);
+			break;
+		
+		case 23 : 
+			po.produire(DIFF);
+			break;
+			
+		case 24 :
+			po.produire(MUL);
+			break;
+			
+		case 25 :
+			po.produire(DIV);
+			break;
+		
+		// Gestion de primaire
+		case 26 : // valeur
+			po.produire(EMPILER);
+			break;
+			
+		case 27 : // ident
+			// On vérifie que l'ident lu existe dans la table
+			int id_ident = presentIdent(1);
+			if (id_ident == 0) {
+				UtilLex.messErr("L'ident utilisé n'existe pas");
+			}
+			// On change le type courant
+			tCour = tabSymb[id_ident].type;
+			// On trouve le type de l'ident (variable locale, globale ou constante)
+			switch(tabSymb[id_ident].categorie) {
+				
+				case CONSTANTE :
+					po.produire(EMPILER);
+					break;
+				
+				case VARGLOBALE :
+					po.produire(CONTENUG);
+					break;
+					
+				// Il reste les variables locales à gérer
+			}
+			
+		// Branchements conditionnels
+		
+		// "si"
+		case 28 :
+			// Vérifier que la dernière expression était booléenne
+			verifBool();
+			// Produire un bsifaux
+			po.produire(BSIFAUX);
+			pileRep.empiler(po.getIpo());
+			break;
+			
+		// "sinon"	
+		case 29 :
+			int ipo_si = pileRep.depiler();
+			po.produire(BINCOND);
+			pileRep.empiler(po.getIpo());
+			po.modifier(ipo_si, po.getIpo() + 1);
+			break;
+			
+		// "fsi"
+		case 30:
+			int dernier_branch = pileRep.depiler();
+			po.modifier(dernier_branch, po.getIpo() + 1);
+			break;
         case 255 : 
         	afftabSymb(); // affichage de la table des symboles en fin de compilation
         	break;
