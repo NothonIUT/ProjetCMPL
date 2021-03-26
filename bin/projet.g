@@ -112,22 +112,22 @@ instruction
   |
   ;
   
-inssi : 'si' expression 'alors' instructions ('sinon'  instructions)? 'fsi' 
+inssi : 'si' expression {PtGen.pt(28)} 'alors' instructions ('sinon'  instructions {PtGen.pt(29)})? {PtGen.pt(30)}'fsi' 
   ;
   
-inscond : 'cond'  expression  ':' instructions 
-          (','  expression  ':' instructions )* 
-          ('aut'  instructions |  ) 
-          'fcond' 
+inscond : 'cond'  expression {PtGen.pt(28)} ':' instructions
+          (',' {PtGen.pt(33)} expression {PtGen.pt(28)} ':' instructions)* 
+          ('aut' {PtGen.pt(34)} instructions |  ) 
+          'fcond' {PtGen.pt(35)}
   ;
   
-boucle  : 'ttq'  expression 'faire' instructions 'fait' 
+boucle  : 'ttq'  {PtGen.pt(31)} expression {PtGen.pt(28)} 'faire' instructions {PtGen.pt(32)} 'fait' 
   ;
   
 lecture: 'lire' '(' ident  {PtGen.pt(9)} ( ',' ident {PtGen.pt(9)} )* ')' 
   ;
   
-ecriture: 'ecrire' '(' expression  ( ',' expression  )* ')'
+ecriture: 'ecrire' '(' expression  {PtGen.pt(10)} ( ',' expression {PtGen.pt(10)} )* ')'
    ;
   
 affouappel
@@ -142,40 +142,40 @@ effixes : '(' (expression  (',' expression  )*)? ')'
 effmods :'(' (ident  (',' ident  )*)? ')'
   ; 
   
-expression: (exp1) ('ou'  exp1  )*
+expression: (exp1)  ('ou' {PtGen.pt(11)} exp1 {PtGen.pt(11)} )* {PtGen.pt(12)}
   ;
   
-exp1  : exp2 ('et'  exp2  )*
+exp1  : exp2 ('et' {PtGen.pt(11)}  exp2 {PtGen.pt(11)} )* {PtGen.pt(13)}
   ;
   
-exp2  : 'non' exp2 
-  | exp3  
+exp2  : 'non' exp2 {PtGen.pt(11)} {Pt.PtGen(14)}
+  | exp3  {PtGen.pt(11)}
   ;
   
-exp3  : exp4 
-  ( '='   exp4 
-  | '<>'  exp4 
-  | '>'   exp4 
-  | '>='  exp4 
-  | '<'   exp4 
-  | '<='  exp4  
+exp3  : exp4 {PtGen.pt(15)}
+  ( '='   exp4 {PtGen.pt(15)} {PtGen.pt(16)}
+  | '<>'  exp4 {PtGen.pt(15)} {PtGen.pt(17)}
+  | '>'   exp4 {PtGen.pt(15)} {PtGen.pt(18)}
+  | '>='  exp4 {PtGen.pt(15)} {PtGen.pt(19)}
+  | '<'   exp4 {PtGen.pt(15)} {PtGen.pt(20)}
+  | '<='  exp4  {PtGen.pt(15)} {PtGen.pt(21)}
   ) ?
   ;
   
-exp4  : exp5 
-        ('+'  exp5 
-        |'-'  exp5 
+exp4  : exp5 {PtGen.pt(15)}
+        ('+'  exp5 {PtGen.pt(15)} {PtGen.pt(22)}
+        |'-'  exp5 {PtGen.pt(15)} {PtGen.pt(23)}
         )*
   ;
   
-exp5  : primaire 
-        (    '*'   primaire
-          | 'div'  primaire 
+exp5  : primaire {PtGen.pt(15)}
+        (    '*'   primaire {PtGen.pt(15)} {PtGen.pt(24)}
+          | 'div'  primaire {PtGen.pt(15)} {PtGen.pt(25)}
         )*
   ;
   
-primaire: valeur
-  | ident
+primaire: valeur {PtGen.pt(26)}
+  | ident {PtGen.pt(27)}
   | '(' expression ')'
   ;
   

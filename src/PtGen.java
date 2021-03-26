@@ -386,7 +386,7 @@ public class PtGen {
 			
 		// Branchements conditionnels
 		
-		// "si"
+		// Evaluation d'une expression
 		case 28 :
 			// Vérifier que la dernière expression était booléenne
 			verifBool();
@@ -408,6 +408,38 @@ public class PtGen {
 			int dernier_branch = pileRep.depiler();
 			po.modifier(dernier_branch, po.getIpo() + 1);
 			break;
+			
+		// Boucle "ttq"
+		case 31 :
+			pileRep.empiler(po.getIpo()+1);
+			break;
+			
+		// Fin Tant que
+		case 32 :
+			int sortie_ttq = pileRep.depiler(); // Valeur d'ipo pour sortir du ttq (empilée au case 28)
+			int debut_ttq = pileRep.depiler(); // Valeur d'ipo pour reboucler (empilée au case 30)
+			
+			po.produire(BINCOND);
+			po.produire(debut_ttq);
+			
+			po.modifier(sortie_ttq, po.getIpo()+1);
+			break;
+			
+		// Gestion de chaque nouveau cas du cond (chainage des bincond)	
+		case 33 :
+			int ipo_bsifaux = pileRep.depiler();
+			int ipo_bincond = pileRep.depiler();
+			
+			po.produire(BINCOND);
+			po.produire(ipo_bincond);
+			
+			po.modifier(ipo_bsifaux, po.getIpo() + 1);
+			pileRep.empiler(po.getIpo());
+			break;
+			
+		// gestion du aut	
+		case 34 :
+			
         case 255 : 
         	afftabSymb(); // affichage de la table des symboles en fin de compilation
         	break;

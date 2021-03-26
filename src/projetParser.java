@@ -2326,7 +2326,7 @@ public class projetParser extends Parser {
 					ident();
 					state._fsp--;
 
-					PtGen.pt(2)
+					PtGen.pt(2);
 					}
 					break;
 				case 3 :
@@ -2398,7 +2398,7 @@ public class projetParser extends Parser {
 					nbentier();
 					state._fsp--;
 
-					PtGen.pt(1)
+					PtGen.pt(1);
 					}
 					break;
 				case 2 :
