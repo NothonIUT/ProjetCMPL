@@ -210,8 +210,13 @@ public class PtGen {
 
 		// initialisation du type de l'expression courante
 		tCour = NEUTRE;
+<<<<<<< HEAD
 
 		// initiatlisation du nombre de variables globales declarees
+=======
+		
+		// initiatlisation du nombre de variables globales d�clar�es
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 		cptVarGlobales = 0;
 
 	} // initialisations
@@ -228,12 +233,22 @@ public class PtGen {
 		case 0:
 			initialisations();
 			break;
+<<<<<<< HEAD
 		case 1: // consts
 			if (presentIdent(1) == 0) {
 				// Ajouter
 				placeIdent(UtilLex.numIdCourant, 1, 1, vCour);
 			} else {
 				UtilLex.messErr("Constante d�j� d�clar�e.");
+=======
+
+		case 1 : // consts
+			if(presentIdent(1) == 0){
+				//Ajouter
+				placeIdent(UtilLex.numId, 1, 1, vCour);
+			}else {
+				UtilLex.messErr("Constante d�j� d�clar�e." );
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 			}
 			break;
 
@@ -241,7 +256,11 @@ public class PtGen {
 			if (presentIdent(1) == 0) {
 				placeIdent(UtilLex.numIdCourant, 0, tCour, cptVarGlobales);
 				cptVarGlobales++;
+<<<<<<< HEAD
 			} else {
+=======
+			}else {
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 				UtilLex.messErr("Variable d�j� d�clar�e");
 			}
 			break;
@@ -290,19 +309,31 @@ public class PtGen {
 			}
 			break;
 		// expression
+<<<<<<< HEAD
 		// Les case 11 et 15 sont utilis�s pour v�rifier que l'expression est bien de
 		// type bool�enne ou enti�re
 
 		case 11:
+=======
+		// Les case 11 et 15 sont utilis�s pour v�rifier que l'expression est bien de type bool�enne ou enti�re
+			
+		case 11 :
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 			verifBool();
 			break;
 
 		case 15:
 			verifEnt();
 			break;
+<<<<<<< HEAD
 
 		// Production des op�rations entre expressions
 		case 12:
+=======
+			
+		// Production des op�rations entre expressions
+		case 12 :
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 			po.produire(OU);
 			break;
 
@@ -364,8 +395,13 @@ public class PtGen {
 		case 26: // valeur
 			po.produire(EMPILER);
 			break;
+<<<<<<< HEAD
 
 		case 27: // ident
+=======
+			
+		case 27 : // ident
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 			// On v�rifie que l'ident lu existe dans la table
 			int id_ident = presentIdent(1);
 			if (id_ident == 0) {
@@ -374,6 +410,7 @@ public class PtGen {
 			// On change le type courant
 			tCour = tabSymb[id_ident].type;
 			// On trouve le type de l'ident (variable locale, globale ou constante)
+<<<<<<< HEAD
 			switch (tabSymb[id_ident].categorie) {
 
 			case CONSTANTE:
@@ -391,6 +428,25 @@ public class PtGen {
 
 			// Evaluation d'une expression
 		case 28:
+=======
+			switch(tabSymb[id_ident].categorie) {
+				
+				case CONSTANTE :
+					po.produire(EMPILER);
+					break;
+				
+				case VARGLOBALE :
+					po.produire(CONTENUG);
+					break;
+					
+				// Il reste les variables locales � g�rer
+			}
+			
+		// Branchements conditionnels
+		
+		// Evaluation d'une expression
+		case 28 :
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 			// V�rifier que la derni�re expression �tait bool�enne
 			verifBool();
 			// Produire un bsifaux
@@ -418,10 +474,17 @@ public class PtGen {
 			break;
 
 		// Fin Tant que
+<<<<<<< HEAD
 		case 32:
 			int sortie_ttq = pileRep.depiler(); // Valeur d'ipo pour sortir du ttq (empil�e au case 28)
 			int debut_ttq = pileRep.depiler(); // Valeur d'ipo pour reboucler (empil�e au case 30)
 
+=======
+		case 32 :
+			int sortie_ttq = pileRep.depiler(); // Valeur d'ipo pour sortir du ttq (empil�e au case 28)
+			int debut_ttq = pileRep.depiler(); // Valeur d'ipo pour reboucler (empil�e au case 30)
+			
+>>>>>>> 8f2ffdb7a9be3a8d5e61f851cd669b5faa07e9bf
 			po.produire(BINCOND);
 			po.produire(debut_ttq);
 
