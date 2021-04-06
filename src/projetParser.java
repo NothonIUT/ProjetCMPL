@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 projet.g 2021-04-06 10:56:59
+// $ANTLR 3.5.2 projet.g 2021-04-06 15:17:33
            
 import java.io.IOException;
 import java.io.DataInputStream;
@@ -322,7 +322,7 @@ public class projetParser extends Parser {
 
 			}
 
-			PtGen.pt(8)
+			PtGen.pt(8);
 			}
 
 		}
@@ -597,7 +597,7 @@ public class projetParser extends Parser {
 					valeur();
 					state._fsp--;
 
-					PtGen.pt(1)
+					PtGen.pt(1);
 					pushFollow(FOLLOW_ptvg_in_consts345);
 					ptvg();
 					state._fsp--;
@@ -656,8 +656,8 @@ public class projetParser extends Parser {
 					ident();
 					state._fsp--;
 
-					PtGen.pt(2)
-					// projet.g:69:42: ( ',' ident )*
+					PtGen.pt(2);
+					// projet.g:69:43: ( ',' ident )*
 					loop14:
 					while (true) {
 						int alt14=2;
@@ -668,14 +668,14 @@ public class projetParser extends Parser {
 
 						switch (alt14) {
 						case 1 :
-							// projet.g:69:44: ',' ident
+							// projet.g:69:45: ',' ident
 							{
 							match(input,14,FOLLOW_14_in_vars373); 
 							pushFollow(FOLLOW_ident_in_vars376);
 							ident();
 							state._fsp--;
 
-							PtGen.pt(2)
+							PtGen.pt(2);
 							}
 							break;
 
@@ -737,14 +737,14 @@ public class projetParser extends Parser {
 					// projet.g:72:9: 'ent'
 					{
 					match(input,34,FOLLOW_34_in_type401); 
-					PtGen.pt(6)
+					PtGen.pt(6);
 					}
 					break;
 				case 2 :
 					// projet.g:73:9: 'bool'
 					{
 					match(input,27,FOLLOW_27_in_type414); 
-					PtGen.pt(7)
+					PtGen.pt(7);
 					}
 					break;
 
@@ -1392,13 +1392,13 @@ public class projetParser extends Parser {
 			expression();
 			state._fsp--;
 
-			PtGen.pt(28)
+			PtGen.pt(28);
 			match(input,25,FOLLOW_25_in_inssi702); 
 			pushFollow(FOLLOW_instructions_in_inssi704);
 			instructions();
 			state._fsp--;
 
-			// projet.g:115:61: ( 'sinon' instructions )?
+			// projet.g:115:62: ( 'sinon' instructions )?
 			int alt29=2;
 			int LA29_0 = input.LA(1);
 			if ( (LA29_0==52) ) {
@@ -1406,20 +1406,20 @@ public class projetParser extends Parser {
 			}
 			switch (alt29) {
 				case 1 :
-					// projet.g:115:62: 'sinon' instructions
+					// projet.g:115:63: 'sinon' instructions
 					{
 					match(input,52,FOLLOW_52_in_inssi707); 
 					pushFollow(FOLLOW_instructions_in_inssi710);
 					instructions();
 					state._fsp--;
 
-					PtGen.pt(29)
+					PtGen.pt(29);
 					}
 					break;
 
 			}
 
-			PtGen.pt(30)
+			PtGen.pt(30);
 			match(input,42,FOLLOW_42_in_inssi717); 
 			}
 
@@ -1446,7 +1446,7 @@ public class projetParser extends Parser {
 			expression();
 			state._fsp--;
 
-			PtGen.pt(28)
+			PtGen.pt(28);
 			match(input,16,FOLLOW_16_in_inscond738); 
 			pushFollow(FOLLOW_instructions_in_inscond740);
 			instructions();
@@ -1466,12 +1466,12 @@ public class projetParser extends Parser {
 					// projet.g:119:12: ',' expression ':' instructions
 					{
 					match(input,14,FOLLOW_14_in_inscond753); 
-					PtGen.pt(33)
+					PtGen.pt(33);
 					pushFollow(FOLLOW_expression_in_inscond757);
 					expression();
 					state._fsp--;
 
-					PtGen.pt(28)
+					PtGen.pt(28);
 					match(input,16,FOLLOW_16_in_inscond761); 
 					pushFollow(FOLLOW_instructions_in_inscond763);
 					instructions();
@@ -1505,7 +1505,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:120:12: 'aut' instructions
 					{
-					PtGen.pt(34)
+					PtGen.pt(34);
 					match(input,26,FOLLOW_26_in_inscond781); 
 					pushFollow(FOLLOW_instructions_in_inscond784);
 					instructions();
@@ -1514,14 +1514,14 @@ public class projetParser extends Parser {
 					}
 					break;
 				case 2 :
-					// projet.g:120:50: 
+					// projet.g:120:51: 
 					{
 					}
 					break;
 
 			}
 
-			PtGen.pt(35)
+			PtGen.pt(35);
 			match(input,39,FOLLOW_39_in_inscond804); 
 			}
 
@@ -1544,18 +1544,18 @@ public class projetParser extends Parser {
 			// projet.g:124:11: 'ttq' expression 'faire' instructions 'fait'
 			{
 			match(input,53,FOLLOW_53_in_boucle819); 
-			PtGen.pt(31)
+			PtGen.pt(31);
 			pushFollow(FOLLOW_expression_in_boucle824);
 			expression();
 			state._fsp--;
 
-			PtGen.pt(28)
+			PtGen.pt(28);
 			match(input,36,FOLLOW_36_in_boucle828); 
 			pushFollow(FOLLOW_instructions_in_boucle830);
 			instructions();
 			state._fsp--;
 
-			PtGen.pt(32)
+			PtGen.pt(32);
 			match(input,37,FOLLOW_37_in_boucle834); 
 			}
 
@@ -1583,8 +1583,8 @@ public class projetParser extends Parser {
 			ident();
 			state._fsp--;
 
-			PtGen.pt(9)
-			// projet.g:127:42: ( ',' ident )*
+			PtGen.pt(9);
+			// projet.g:127:43: ( ',' ident )*
 			loop32:
 			while (true) {
 				int alt32=2;
@@ -1595,14 +1595,14 @@ public class projetParser extends Parser {
 
 				switch (alt32) {
 				case 1 :
-					// projet.g:127:44: ',' ident
+					// projet.g:127:45: ',' ident
 					{
 					match(input,14,FOLLOW_14_in_lecture858); 
 					pushFollow(FOLLOW_ident_in_lecture860);
 					ident();
 					state._fsp--;
 
-					PtGen.pt(9)
+					PtGen.pt(9);
 					}
 					break;
 
@@ -1638,8 +1638,8 @@ public class projetParser extends Parser {
 			expression();
 			state._fsp--;
 
-			PtGen.pt(10)
-			// projet.g:130:51: ( ',' expression )*
+			PtGen.pt(10);
+			// projet.g:130:52: ( ',' expression )*
 			loop33:
 			while (true) {
 				int alt33=2;
@@ -1650,14 +1650,14 @@ public class projetParser extends Parser {
 
 				switch (alt33) {
 				case 1 :
-					// projet.g:130:53: ',' expression
+					// projet.g:130:54: ',' expression
 					{
 					match(input,14,FOLLOW_14_in_ecriture891); 
 					pushFollow(FOLLOW_expression_in_ecriture893);
 					expression();
 					state._fsp--;
 
-					PtGen.pt(10)
+					PtGen.pt(10);
 					}
 					break;
 
@@ -1941,12 +1941,12 @@ public class projetParser extends Parser {
 					// projet.g:145:22: 'ou' exp1
 					{
 					match(input,47,FOLLOW_47_in_expression1046); 
-					PtGen.pt(11)
+					PtGen.pt(11);
 					pushFollow(FOLLOW_exp1_in_expression1050);
 					exp1();
 					state._fsp--;
 
-					PtGen.pt(11)
+					PtGen.pt(11);
 					}
 					break;
 
@@ -1955,7 +1955,7 @@ public class projetParser extends Parser {
 				}
 			}
 
-			PtGen.pt(12)
+			PtGen.pt(12);
 			}
 
 		}
@@ -1994,12 +1994,12 @@ public class projetParser extends Parser {
 					// projet.g:148:15: 'et' exp2
 					{
 					match(input,35,FOLLOW_35_in_exp11074); 
-					PtGen.pt(11)
+					PtGen.pt(11);
 					pushFollow(FOLLOW_exp2_in_exp11079);
 					exp2();
 					state._fsp--;
 
-					PtGen.pt(11)
+					PtGen.pt(11);
 					}
 					break;
 
@@ -2008,7 +2008,7 @@ public class projetParser extends Parser {
 				}
 			}
 
-			PtGen.pt(13)
+			PtGen.pt(13);
 			}
 
 		}
@@ -2051,8 +2051,8 @@ public class projetParser extends Parser {
 					exp2();
 					state._fsp--;
 
-					PtGen.pt(11)
-					Pt.PtGen(14)
+					PtGen.pt(11);
+					PtGen.pt(14);
 					}
 					break;
 				case 2 :
@@ -2062,7 +2062,7 @@ public class projetParser extends Parser {
 					exp3();
 					state._fsp--;
 
-					PtGen.pt(11)
+					PtGen.pt(11);
 					}
 					break;
 
@@ -2089,7 +2089,7 @@ public class projetParser extends Parser {
 			exp4();
 			state._fsp--;
 
-			PtGen.pt(15)
+			PtGen.pt(15);
 			// projet.g:156:3: ( '=' exp4 | '<>' exp4 | '>' exp4 | '>=' exp4 | '<' exp4 | '<=' exp4 )?
 			int alt44=7;
 			switch ( input.LA(1) ) {
@@ -2133,8 +2133,8 @@ public class projetParser extends Parser {
 					exp4();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(16)
+					PtGen.pt(15);
+					PtGen.pt(16);
 					}
 					break;
 				case 2 :
@@ -2145,8 +2145,8 @@ public class projetParser extends Parser {
 					exp4();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(17)
+					PtGen.pt(15);
+					PtGen.pt(17);
 					}
 					break;
 				case 3 :
@@ -2157,8 +2157,8 @@ public class projetParser extends Parser {
 					exp4();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(18)
+					PtGen.pt(15);
+					PtGen.pt(18);
 					}
 					break;
 				case 4 :
@@ -2169,8 +2169,8 @@ public class projetParser extends Parser {
 					exp4();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(19)
+					PtGen.pt(15);
+					PtGen.pt(19);
 					}
 					break;
 				case 5 :
@@ -2181,8 +2181,8 @@ public class projetParser extends Parser {
 					exp4();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(20)
+					PtGen.pt(15);
+					PtGen.pt(20);
 					}
 					break;
 				case 6 :
@@ -2193,8 +2193,8 @@ public class projetParser extends Parser {
 					exp4();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(21)
+					PtGen.pt(15);
+					PtGen.pt(21);
 					}
 					break;
 
@@ -2224,7 +2224,7 @@ public class projetParser extends Parser {
 			exp5();
 			state._fsp--;
 
-			PtGen.pt(15)
+			PtGen.pt(15);
 			// projet.g:166:9: ( '+' exp5 | '-' exp5 )*
 			loop45:
 			while (true) {
@@ -2246,8 +2246,8 @@ public class projetParser extends Parser {
 					exp5();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(22)
+					PtGen.pt(15);
+					PtGen.pt(22);
 					}
 					break;
 				case 2 :
@@ -2258,8 +2258,8 @@ public class projetParser extends Parser {
 					exp5();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(23)
+					PtGen.pt(15);
+					PtGen.pt(23);
 					}
 					break;
 
@@ -2292,7 +2292,7 @@ public class projetParser extends Parser {
 			primaire();
 			state._fsp--;
 
-			PtGen.pt(15)
+			PtGen.pt(15);
 			// projet.g:172:9: ( '*' primaire | 'div' primaire )*
 			loop46:
 			while (true) {
@@ -2314,8 +2314,8 @@ public class projetParser extends Parser {
 					primaire();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(24)
+					PtGen.pt(15);
+					PtGen.pt(24);
 					}
 					break;
 				case 2 :
@@ -2326,8 +2326,8 @@ public class projetParser extends Parser {
 					primaire();
 					state._fsp--;
 
-					PtGen.pt(15)
-					PtGen.pt(25)
+					PtGen.pt(15);
+					PtGen.pt(25);
 					}
 					break;
 
@@ -2388,7 +2388,7 @@ public class projetParser extends Parser {
 					valeur();
 					state._fsp--;
 
-					PtGen.pt(26)
+					PtGen.pt(26);
 					}
 					break;
 				case 2 :
@@ -2398,7 +2398,7 @@ public class projetParser extends Parser {
 					ident();
 					state._fsp--;
 
-					PtGen.pt(27)
+					PtGen.pt(27);
 					}
 					break;
 				case 3 :
@@ -2490,21 +2490,21 @@ public class projetParser extends Parser {
 					nbentier();
 					state._fsp--;
 
-					PtGen.pt(3)
+					PtGen.pt(3);
 					}
 					break;
 				case 4 :
 					// projet.g:185:5: 'vrai'
 					{
 					match(input,55,FOLLOW_55_in_valeur1423); 
-					PtGen.pt(4)
+					PtGen.pt(4);
 					}
 					break;
 				case 5 :
 					// projet.g:186:5: 'faux'
 					{
 					match(input,38,FOLLOW_38_in_valeur1431); 
-					PtGen.pt(5)
+					PtGen.pt(5);
 					}
 					break;
 
