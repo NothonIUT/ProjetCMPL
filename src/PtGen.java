@@ -228,12 +228,12 @@ public class PtGen {
 			initialisations();
 			break;
 
-		case 1 : // consts
-			if(presentIdent(1) == 0){
-				//Ajouter
+		case 1: // consts
+			if (presentIdent(1) == 0) {
+				// Ajouter
 				placeIdent(UtilLex.numIdCourant, 1, 1, vCour);
-			}else {
-				UtilLex.messErr("Constante deja declaree." );
+			} else {
+				UtilLex.messErr("Constante deja declaree.");
 			}
 			break;
 
@@ -241,9 +241,9 @@ public class PtGen {
 			if (presentIdent(1) == 0) {
 				placeIdent(UtilLex.numIdCourant, 0, tCour, cptVarGlobales);
 				cptVarGlobales++;
-			}else {
+			} else {
 
-				UtilLex.messErr("Variable dï¿½jï¿½ dï¿½clarï¿½e");
+				UtilLex.messErr("Variable deja declaree");
 			}
 			break;
 
@@ -292,18 +292,19 @@ public class PtGen {
 			break;
 		// expression
 
-		// Les case 11 et 15 sont utilisees pour verifier que l'expression est bien de type booleenne ou entiere
-			
-		case 11 :
+		// Les case 11 et 15 sont utilisees pour verifier que l'expression est bien de
+		// type booleenne ou entiere
+
+		case 11:
 			verifBool();
 			break;
 
 		case 15:
 			verifEnt();
 			break;
-			
+
 		// Production des operations entre expressions
-		case 12 :
+		case 12:
 			po.produire(OU);
 			break;
 
@@ -361,16 +362,40 @@ public class PtGen {
 			po.produire(DIV);
 			break;
 
-		// Gestion de primaire
+		// Affectation de la valeur d'une expression à une variable
+		case 34:
+			if (presentIdent(1) == 0) {
+				UtilLex.messErr("ident non present");
+			} else {
+				int identCat = tabSymb[UtilLex.numIdCourant].categorie;
+				if (identCat == CONSTANTE || identCat == PARAMFIXE) {
+					UtilLex.messErr(
+							"ident non modifiable. L'ident ne doit pas être une constante ou un parametre fixe");
+				}
+				if (identCat == VARGLOBALE) {
+					po.produire(AFFECTERG);
+					po.produire(UtilLex.numIdCourant);
+				}
+				else if(identCat == VARLOCALE || identCat == PARAMMOD) {
+					po.produire(AFFECTERL);
+					po.produire(UtilLex.numIdCourant);
+					if (identCat == VARLOCALE)
+						po.produire(0);
+					if (identCat == PARAMMOD)
+						po.produire(1);
+				}
+			}
+
+			// Gestion de primaire
 		case 26: // valeur
 			po.produire(EMPILER);
 			break;
-	
-		case 27 : // ident
+
+		case 27: // ident
 			// On verifie que l'ident lu existe dans la table
 			int id_ident = presentIdent(1);
 			if (id_ident == 0) {
-				UtilLex.messErr("L'ident utilisï¿½ n'existe pas");
+				UtilLex.messErr("L'ident utilise  	n'existe pas");
 			}
 			// On change le type courant
 			tCour = tabSymb[id_ident].type;
@@ -396,7 +421,7 @@ public class PtGen {
 			// Produire un bsifaux
 			po.produire(BSIFAUX);
 			pileRep.empiler(po.getIpo());
-			break;	
+			break;
 
 		// "sinon"
 		case 29:
@@ -419,7 +444,7 @@ public class PtGen {
 
 		// Fin Tant que
 
-		case 32 :
+		case 32:
 			int sortie_ttq = pileRep.depiler(); // Valeur d'ipo pour sortir du ttq (empilï¿½e au case 28)
 			int debut_ttq = pileRep.depiler(); // Valeur d'ipo pour reboucler (empilï¿½e au case 30)
 			po.produire(BINCOND);
