@@ -211,7 +211,7 @@ public class PtGen {
 		// initialisation du type de l'expression courante
 		tCour = NEUTRE;
 		
-		// initiatlisation du nombre de variables globales déclarées
+		// initiatlisation du nombre de variables globales dï¿½clarï¿½es
 		cptVarGlobales = 0;
 	} // initialisations
 
@@ -232,7 +232,7 @@ public class PtGen {
 				//Ajouter
 				placeIdent(UtilLex.numId, 1, 1, vCour);
 			}else {
-				UtilLex.messErr("Constante déjà déclarée." );
+				UtilLex.messErr("Constante dï¿½jï¿½ dï¿½clarï¿½e." );
 			}
 			break;
 		
@@ -241,7 +241,7 @@ public class PtGen {
 				placeIdent(UtilLex.numId, 0, tCour, cptVarGlobales);
 				cptVarGlobales++;
 			}else {
-				UtilLex.messErr("Variable déjà déclarée");
+				UtilLex.messErr("Variable dï¿½jï¿½ dï¿½clarï¿½e");
 			}
 			break;
 			
@@ -288,7 +288,7 @@ public class PtGen {
 			break;
 			
 		// expression
-		// Les case 11 et 15 sont utilisés pour vérifier que l'expression est bien de type booléenne ou entière
+		// Les case 11 et 15 sont utilisï¿½s pour vï¿½rifier que l'expression est bien de type boolï¿½enne ou entiï¿½re
 			
 		case 11 :
 			verifBool();
@@ -298,7 +298,7 @@ public class PtGen {
 			verifEnt();
 			break;
 			
-		// Production des opérations entre expressions
+		// Production des opï¿½rations entre expressions
 		case 12 :
 			po.produire(OU);
 			break;
@@ -363,10 +363,10 @@ public class PtGen {
 			break;
 			
 		case 27 : // ident
-			// On vérifie que l'ident lu existe dans la table
+			// On vï¿½rifie que l'ident lu existe dans la table
 			int id_ident = presentIdent(1);
 			if (id_ident == 0) {
-				UtilLex.messErr("L'ident utilisé n'existe pas");
+				UtilLex.messErr("L'ident utilisï¿½ n'existe pas");
 			}
 			// On change le type courant
 			tCour = tabSymb[id_ident].type;
@@ -381,14 +381,14 @@ public class PtGen {
 					po.produire(CONTENUG);
 					break;
 					
-				// Il reste les variables locales à gérer
+				// Il reste les variables locales ï¿½ gï¿½rer
 			}
 			
 		// Branchements conditionnels
 		
 		// Evaluation d'une expression
 		case 28 :
-			// Vérifier que la dernière expression était booléenne
+			// Vï¿½rifier que la derniï¿½re expression ï¿½tait boolï¿½enne
 			verifBool();
 			// Produire un bsifaux
 			po.produire(BSIFAUX);
@@ -416,8 +416,8 @@ public class PtGen {
 			
 		// Fin Tant que
 		case 32 :
-			int sortie_ttq = pileRep.depiler(); // Valeur d'ipo pour sortir du ttq (empilée au case 28)
-			int debut_ttq = pileRep.depiler(); // Valeur d'ipo pour reboucler (empilée au case 30)
+			int sortie_ttq = pileRep.depiler(); // Valeur d'ipo pour sortir du ttq (empilï¿½e au case 28)
+			int debut_ttq = pileRep.depiler(); // Valeur d'ipo pour reboucler (empilï¿½e au case 30)
 			
 			po.produire(BINCOND);
 			po.produire(debut_ttq);
