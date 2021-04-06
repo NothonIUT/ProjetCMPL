@@ -156,7 +156,7 @@ public class PtGen {
 	 * @param code : UtilLex.numIdCourant de l'ident
 	 * @param cat  : categorie de l'ident parmi CONSTANTE, VARGLOBALE, PROC, etc.
 	 * @param type : ENT, BOOL ou NEUTRE
-	 * @param info : valeur pour une constante, ad d'exÃ©cution pour une variable,
+	 * @param info : valeur pour une constante, ad d'execution pour une variable,
 	 *             etc.
 	 */
 	private static void placeIdent(int code, int cat, int type, int info) {
@@ -210,7 +210,7 @@ public class PtGen {
 
 		// initialisation du type de l'expression courante
 		tCour = NEUTRE;
-		// initiatlisation du nombre de variables globales d�clar�es
+		// initiatlisation du nombre de variables globales declarees
 		cptVarGlobales = 0;
 
 	} // initialisations
@@ -292,7 +292,7 @@ public class PtGen {
 			break;
 		// expression
 
-		// Les case 11 et 15 sont utilisees pour verifier que l'expression est bien de
+		// Les case 11 et 15 sont utilises pour verifier que l'expression est bien de
 		// type booleenne ou entiere
 
 		case 11:
@@ -386,7 +386,7 @@ public class PtGen {
 				}
 			}
 
-			// Gestion de primaire
+		// Gestion de primaire
 		case 26: // valeur
 			po.produire(EMPILER);
 			break;
@@ -395,7 +395,7 @@ public class PtGen {
 			// On verifie que l'ident lu existe dans la table
 			int id_ident = presentIdent(1);
 			if (id_ident == 0) {
-				UtilLex.messErr("L'ident utilise  	n'existe pas");
+				UtilLex.messErr("L'ident utilise n'existe pas");
 			}
 			// On change le type courant
 			tCour = tabSymb[id_ident].type;
