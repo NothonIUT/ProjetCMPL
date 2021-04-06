@@ -1,5 +1,6 @@
 import java.io.InputStream;
 import java.io.OutputStream;
+
 /** classe necessaire a la COMPILATION SEPAREE d'un programme et de modules
  * 		attributs a definir pour une unite compilee
  * 		+ methodes de consulation, de modification, 
@@ -11,6 +12,8 @@ import java.io.OutputStream;
  */
 
 public class Descripteur {
+		
+	
 	/**  classe interne EltDef definissant 
 	 * 	 le type de chaque element de la table des points d'entree tabDef
 	 */
