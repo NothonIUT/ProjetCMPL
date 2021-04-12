@@ -231,7 +231,10 @@ public class PtGen {
 		case 1: // consts
 			if (presentIdent(1) == 0) {
 				// Ajouter
-				placeIdent(UtilLex.numIdCourant, 1, 1, vCour);
+				if (tCour == ENT)
+					placeIdent(UtilLex.numIdCourant, CONSTANTE, ENT, vCour);
+				else if (tCour == BOOL)
+					placeIdent(UtilLex.numIdCourant, CONSTANTE, BOOL, vCour);
 			} else {
 				UtilLex.messErr("Constante deja declaree.");
 			}
@@ -239,27 +242,30 @@ public class PtGen {
 
 		case 2:
 			if (presentIdent(1) == 0) {
-				placeIdent(UtilLex.numIdCourant, 0, tCour, cptVarGlobales);
+				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, cptVarGlobales);
 				cptVarGlobales++;
 			} else {
-
 				UtilLex.messErr("Variable deja declaree");
 			}
 			break;
 
 		// Lecture de valeur
+		case 37 :
+			tCour = ENT;
+			break;
 		case 3: // '-' nbentier
 			vCour = (-1) * vCour;
+			tCour = ENT;
 			break;
 		case 4: // "vrai"
 			vCour = 1;
+			tCour = BOOL;
 			break;
 		case 5:
 			vCour = 0;
+			tCour = BOOL;
 			break;
-		case 255:
-			afftabSymb(); // affichage de la table des symboles en fin de compilation
-			break;
+			
 		// Lecture du type
 		case 6:
 			tCour = ENT;
@@ -364,6 +370,8 @@ public class PtGen {
 
 		// Affectation de la valeur d'une expression à une variable
 		case 34:
+			int ancienNumId = UtilLex.numIdCourant;
+			UtilLex.numIdCourant = pileRep.depiler();
 			if (presentIdent(1) == 0) {
 				UtilLex.messErr("ident non present");
 			} else {
@@ -384,6 +392,7 @@ public class PtGen {
 					if (identCat == PARAMMOD)
 						po.produire(1);
 				}
+				UtilLex.numIdCourant = ancienNumId;
 			}
 
 		// Gestion de primaire
@@ -417,7 +426,6 @@ public class PtGen {
 
 			// Evaluation d'une expression
 		case 28:
-			verifBool();
 			// Produire un bsifaux
 			po.produire(BSIFAUX);
 			pileRep.empiler(po.getIpo());
@@ -452,20 +460,38 @@ public class PtGen {
 
 			po.modifier(sortie_ttq, po.getIpo() + 1);
 			break;
-
-		// Gestion de chaque nouveau cas du cond (chainage des bincond)
+		
+		// Debut cond
+			
+		// Rebanchement du BSIFAUX et production du BINCOND
 		case 33:
 			int ipo_bsifaux = pileRep.depiler();
-			int ipo_bincond = pileRep.depiler();
-
-			po.produire(BINCOND);
-			po.produire(ipo_bincond);
-
-			po.modifier(ipo_bsifaux, po.getIpo() + 1);
 			pileRep.empiler(po.getIpo());
+			po.produire(BINCOND);
+			po.produire(0);
+			po.modifier(ipo_bsifaux, po.getIpo() + 1);
+			
 			break;
-		// TODO
+		
+		// fincond, rebranchement des BINCOND
+		case 35 : 
+			int ipo_bincond = pileRep.depiler(); // ipo du bincond à rebrancher
+			int ipo_fincond = po.getIpo() + 1; // ipo auquel brancher le bincond
+			while(pileRep.depiler() != 0) {
+				po.modifier(ipo_bincond, ipo_fincond);
+				ipo_bincond = pileRep.depiler();
+			}
+			break;
+		
+		case 36 :
+			int ident_a_modif = UtilLex.numIdCourant;
+			pileRep.empiler(ident_a_modif);
+			break;
 
+		case 255:
+			afftabSymb(); // affichage de la table des symboles en fin de compilation
+			break;
+			
 		default:
 			System.out.println("Point de generation non prevu dans votre liste");
 			break;

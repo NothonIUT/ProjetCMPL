@@ -117,7 +117,7 @@ inssi : 'si' expression {PtGen.pt(28);} 'alors' instructions ('sinon'  instructi
   
 inscond : 'cond'  expression {PtGen.pt(28);} ':' instructions
           (',' {PtGen.pt(33);} expression {PtGen.pt(28);} ':' instructions)* 
-          ({PtGen.pt(34);} 'aut'  instructions |  ) 
+          ({PtGen.pt(33);} 'aut'  instructions |  ) 
           {PtGen.pt(35);} 'fcond' 
   ;
   
@@ -131,7 +131,7 @@ ecriture: 'ecrire' '(' expression  {PtGen.pt(10);} ( ',' expression {PtGen.pt(10
    ;
   
 affouappel
-  : ident  (    ':=' expression {PtGen.pt(34);}
+  : ident  (    ':='{PtGen.pt(36);} expression {PtGen.pt(34);}
             |   (effixes (effmods)?)?  
            )
   ;
@@ -142,35 +142,35 @@ effixes : '(' (expression  (',' expression  )*)? ')'
 effmods :'(' (ident  (',' ident  )*)? ')'
   ; 
   
-expression: (exp1)  ('ou' {PtGen.pt(11);} exp1 {PtGen.pt(11);} )* {PtGen.pt(12);}
+expression: (exp1)  ('ou' exp1)* {PtGen.pt(12);}
   ;
   
 exp1  : exp2 ('et' {PtGen.pt(11);}  exp2 {PtGen.pt(11);} )* {PtGen.pt(13);}
   ;
   
 exp2  : 'non' exp2 {PtGen.pt(11);} {PtGen.pt(14);}
-  | exp3  {PtGen.pt(11);}
+  | exp3
   ;
   
-exp3  : exp4 {PtGen.pt(15);}
-  ( '='   exp4 {PtGen.pt(15);} {PtGen.pt(16);}
-  | '<>'  exp4 {PtGen.pt(15);} {PtGen.pt(17);}
-  | '>'   exp4 {PtGen.pt(15);} {PtGen.pt(18);}
-  | '>='  exp4 {PtGen.pt(15);} {PtGen.pt(19);}
-  | '<'   exp4 {PtGen.pt(15);} {PtGen.pt(20);}
-  | '<='  exp4  {PtGen.pt(15);} {PtGen.pt(21);}
+exp3  : exp4 
+  ( '=' {PtGen.pt(15);}  exp4 {PtGen.pt(15);} {PtGen.pt(16);}
+  | '<>' {PtGen.pt(15);}  exp4 {PtGen.pt(15);} {PtGen.pt(17);}
+  | '>'  {PtGen.pt(15);} exp4 {PtGen.pt(15);} {PtGen.pt(18);}
+  | '>='  {PtGen.pt(15);} exp4 {PtGen.pt(15);} {PtGen.pt(19);}
+  | '<'  {PtGen.pt(15);} exp4 {PtGen.pt(15);} {PtGen.pt(20);}
+  | '<=' {PtGen.pt(15);} exp4  {PtGen.pt(15);} {PtGen.pt(21);}
   ) ?
   ;
   
-exp4  : exp5 {PtGen.pt(15);}
-        ('+'  exp5 {PtGen.pt(15);} {PtGen.pt(22);}
-        |'-'  exp5 {PtGen.pt(15);} {PtGen.pt(23);}
+exp4  : exp5 
+        ('+' {PtGen.pt(15);} exp5 {PtGen.pt(15);} {PtGen.pt(22);}
+        |'-' {PtGen.pt(15);} exp5 {PtGen.pt(15);} {PtGen.pt(23);}
         )*
   ;
   
-exp5  : primaire {PtGen.pt(15);}
-        (    '*'   primaire {PtGen.pt(15);} {PtGen.pt(24);}
-          | 'div'  primaire {PtGen.pt(15);} {PtGen.pt(25);}
+exp5  : primaire
+        ( {PtGen.pt(15);}   '*'   primaire {PtGen.pt(15);} {PtGen.pt(24);}
+          | {PtGen.pt(15);} 'div'  primaire {PtGen.pt(15);} {PtGen.pt(25);}
         )*
   ;
   
@@ -179,8 +179,8 @@ primaire: valeur {PtGen.pt(26);}
   | '(' expression ')'
   ;
   
-valeur  : nbentier
-  | '+' nbentier
+valeur  : nbentier {PtGen.pt(37);}
+  | '+' nbentier {PtGen.pt(37);}
   | '-' nbentier {PtGen.pt(3);}
   | 'vrai' {PtGen.pt(4);}
   | 'faux' {PtGen.pt(5);}
