@@ -368,7 +368,7 @@ public class PtGen {
 			po.produire(DIV);
 			break;
 
-		// Affectation de la valeur d'une expression à une variable
+		// Affectation de la valeur d'une expression a une variable
 		case 34:
 			int ancienNumId = UtilLex.numIdCourant;
 			UtilLex.numIdCourant = pileRep.depiler();
@@ -378,7 +378,7 @@ public class PtGen {
 				int identCat = tabSymb[UtilLex.numIdCourant].categorie;
 				if (identCat == CONSTANTE || identCat == PARAMFIXE) {
 					UtilLex.messErr(
-							"ident non modifiable. L'ident ne doit pas être une constante ou un parametre fixe");
+							"ident non modifiable. L'ident ne doit pas ï¿½tre une constante ou un parametre fixe");
 				}
 				if (identCat == VARGLOBALE) {
 					po.produire(AFFECTERG);
@@ -475,17 +475,12 @@ public class PtGen {
 		
 		// fincond, rebranchement des BINCOND
 		case 35 : 
-			int ipo_bincond = pileRep.depiler(); // ipo du bincond à rebrancher
+			int ipo_bincond = pileRep.depiler(); // ipo du bincond ï¿½ rebrancher
 			int ipo_fincond = po.getIpo() + 1; // ipo auquel brancher le bincond
 			while(pileRep.depiler() != 0) {
 				po.modifier(ipo_bincond, ipo_fincond);
 				ipo_bincond = pileRep.depiler();
 			}
-			break;
-		
-		case 36 :
-			int ident_a_modif = UtilLex.numIdCourant;
-			pileRep.empiler(ident_a_modif);
 			break;
 
 		case 255:

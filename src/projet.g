@@ -131,7 +131,7 @@ ecriture: 'ecrire' '(' expression  {PtGen.pt(10);} ( ',' expression {PtGen.pt(10
    ;
   
 affouappel
-  : ident  (    ':='{PtGen.pt(36);} expression {PtGen.pt(34);}
+  : ident  (    ':='{PtGen.pt(34);} expression
             |   (effixes (effmods)?)?  
            )
   ;
