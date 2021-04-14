@@ -117,7 +117,7 @@ public class PtGen {
 
 	// MERCI de renseigner ici un nom pour le trinome, constitue EXCLUSIVEMENT DE
 	// LETTRES
-	public static String trinome = "XxxYyyZzz";
+	public static String trinome = "CalonneLeMoan";
 
 	private static int tCour; // type de l'expression compilee
 	private static int vCour; // sert uniquement lors de la compilation d'une valeur (entiere ou boolenne)
@@ -231,10 +231,7 @@ public class PtGen {
 		case 1: // consts
 			if (presentIdent(1) == 0) {
 				// Ajouter
-				if (tCour == ENT)
-					placeIdent(UtilLex.numIdCourant, CONSTANTE, ENT, vCour);
-				else if (tCour == BOOL)
-					placeIdent(UtilLex.numIdCourant, CONSTANTE, BOOL, vCour);
+				placeIdent(UtilLex.numIdCourant, CONSTANTE, tCour, vCour);
 			} else {
 				UtilLex.messErr("Constante deja declaree.");
 			}
@@ -368,17 +365,15 @@ public class PtGen {
 			po.produire(DIV);
 			break;
 
-		// Affectation de la valeur d'une expression à une variable
+		// Affectation de la valeur d'une expression a une variable
 		case 34:
-			int ancienNumId = UtilLex.numIdCourant;
-			UtilLex.numIdCourant = pileRep.depiler();
 			if (presentIdent(1) == 0) {
 				UtilLex.messErr("ident non present");
 			} else {
 				int identCat = tabSymb[UtilLex.numIdCourant].categorie;
 				if (identCat == CONSTANTE || identCat == PARAMFIXE) {
 					UtilLex.messErr(
-							"ident non modifiable. L'ident ne doit pas être une constante ou un parametre fixe");
+							"ident non modifiable. L'ident ne doit pas ï¿½tre une constante ou un parametre fixe");
 				}
 				if (identCat == VARGLOBALE) {
 					po.produire(AFFECTERG);
@@ -392,7 +387,6 @@ public class PtGen {
 					if (identCat == PARAMMOD)
 						po.produire(1);
 				}
-				UtilLex.numIdCourant = ancienNumId;
 			}
 
 		// Gestion de primaire
@@ -475,17 +469,12 @@ public class PtGen {
 		
 		// fincond, rebranchement des BINCOND
 		case 35 : 
-			int ipo_bincond = pileRep.depiler(); // ipo du bincond à rebrancher
+			int ipo_bincond = pileRep.depiler(); // ipo du bincond ï¿½ rebrancher
 			int ipo_fincond = po.getIpo() + 1; // ipo auquel brancher le bincond
 			while(pileRep.depiler() != 0) {
 				po.modifier(ipo_bincond, ipo_fincond);
 				ipo_bincond = pileRep.depiler();
 			}
-			break;
-		
-		case 36 :
-			int ident_a_modif = UtilLex.numIdCourant;
-			pileRep.empiler(ident_a_modif);
 			break;
 
 		case 255:
