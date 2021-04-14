@@ -1,4 +1,3 @@
-
 /*********************************************************************************
  * VARIABLES ET METHODES FOURNIES PAR LA CLASSE UtilLex (cf libClass_Projet)     *
  *       complement Ã  l'ANALYSEUR LEXICAL produit par ANTLR                      *
@@ -230,16 +229,15 @@ public class PtGen {
 
 		case 1: // consts
 			if (presentIdent(1) == 0) {
-				// Ajouter
 				placeIdent(UtilLex.numIdCourant, CONSTANTE, tCour, vCour);
 			} else {
 				UtilLex.messErr("Constante deja declaree.");
 			}
 			break;
 
-		case 2:
+		case 2: // vars
 			if (presentIdent(1) == 0) {
-				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, cptVarGlobales);
+				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, vCour);
 				cptVarGlobales++;
 			} else {
 				UtilLex.messErr("Variable deja declaree");
@@ -367,6 +365,7 @@ public class PtGen {
 
 		// Affectation de la valeur d'une expression a une variable
 		case 34:
+			UtilLex.numIdCourant = pileRep.depiler();
 			if (presentIdent(1) == 0) {
 				UtilLex.messErr("ident non present");
 			} else {

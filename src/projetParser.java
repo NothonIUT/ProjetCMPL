@@ -597,11 +597,11 @@ public class projetParser extends Parser {
 					valeur();
 					state._fsp--;
 
-					PtGen.pt(1);
-					pushFollow(FOLLOW_ptvg_in_consts345);
+					pushFollow(FOLLOW_ptvg_in_consts342);
 					ptvg();
 					state._fsp--;
 
+					PtGen.pt(1);
 					}
 					break;
 
@@ -633,7 +633,7 @@ public class projetParser extends Parser {
 			// projet.g:69:7: ( 'var' ( type ident ( ',' ident )* ptvg )+ )
 			// projet.g:69:9: 'var' ( type ident ( ',' ident )* ptvg )+
 			{
-			match(input,54,FOLLOW_54_in_vars361); 
+			match(input,54,FOLLOW_54_in_vars359); 
 			// projet.g:69:15: ( type ident ( ',' ident )* ptvg )+
 			int cnt15=0;
 			loop15:
@@ -648,11 +648,11 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:69:17: type ident ( ',' ident )* ptvg
 					{
-					pushFollow(FOLLOW_type_in_vars365);
+					pushFollow(FOLLOW_type_in_vars363);
 					type();
 					state._fsp--;
 
-					pushFollow(FOLLOW_ident_in_vars367);
+					pushFollow(FOLLOW_ident_in_vars365);
 					ident();
 					state._fsp--;
 
@@ -670,8 +670,8 @@ public class projetParser extends Parser {
 						case 1 :
 							// projet.g:69:45: ',' ident
 							{
-							match(input,14,FOLLOW_14_in_vars373); 
-							pushFollow(FOLLOW_ident_in_vars376);
+							match(input,14,FOLLOW_14_in_vars371); 
+							pushFollow(FOLLOW_ident_in_vars374);
 							ident();
 							state._fsp--;
 
@@ -684,7 +684,7 @@ public class projetParser extends Parser {
 						}
 					}
 
-					pushFollow(FOLLOW_ptvg_in_vars383);
+					pushFollow(FOLLOW_ptvg_in_vars381);
 					ptvg();
 					state._fsp--;
 
@@ -736,14 +736,14 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:72:9: 'ent'
 					{
-					match(input,34,FOLLOW_34_in_type401); 
+					match(input,34,FOLLOW_34_in_type399); 
 					PtGen.pt(6);
 					}
 					break;
 				case 2 :
 					// projet.g:73:9: 'bool'
 					{
-					match(input,27,FOLLOW_27_in_type414); 
+					match(input,27,FOLLOW_27_in_type412); 
 					PtGen.pt(7);
 					}
 					break;
@@ -781,11 +781,11 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:76:12: decproc ptvg
 					{
-					pushFollow(FOLLOW_decproc_in_decprocs430);
+					pushFollow(FOLLOW_decproc_in_decprocs428);
 					decproc();
 					state._fsp--;
 
-					pushFollow(FOLLOW_ptvg_in_decprocs432);
+					pushFollow(FOLLOW_ptvg_in_decprocs430);
 					ptvg();
 					state._fsp--;
 
@@ -820,8 +820,8 @@ public class projetParser extends Parser {
 			// projet.g:79:9: ( 'proc' ident ( parfixe )? ( parmod )? ( consts )? ( vars )? corps )
 			// projet.g:79:12: 'proc' ident ( parfixe )? ( parmod )? ( consts )? ( vars )? corps
 			{
-			match(input,48,FOLLOW_48_in_decproc448); 
-			pushFollow(FOLLOW_ident_in_decproc451);
+			match(input,48,FOLLOW_48_in_decproc446); 
+			pushFollow(FOLLOW_ident_in_decproc449);
 			ident();
 			state._fsp--;
 
@@ -835,7 +835,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:79:27: parfixe
 					{
-					pushFollow(FOLLOW_parfixe_in_decproc454);
+					pushFollow(FOLLOW_parfixe_in_decproc452);
 					parfixe();
 					state._fsp--;
 
@@ -854,7 +854,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:79:36: parmod
 					{
-					pushFollow(FOLLOW_parmod_in_decproc457);
+					pushFollow(FOLLOW_parmod_in_decproc455);
 					parmod();
 					state._fsp--;
 
@@ -873,7 +873,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:79:44: consts
 					{
-					pushFollow(FOLLOW_consts_in_decproc460);
+					pushFollow(FOLLOW_consts_in_decproc458);
 					consts();
 					state._fsp--;
 
@@ -892,7 +892,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:79:52: vars
 					{
-					pushFollow(FOLLOW_vars_in_decproc463);
+					pushFollow(FOLLOW_vars_in_decproc461);
 					vars();
 					state._fsp--;
 
@@ -901,7 +901,7 @@ public class projetParser extends Parser {
 
 			}
 
-			pushFollow(FOLLOW_corps_in_decproc466);
+			pushFollow(FOLLOW_corps_in_decproc464);
 			corps();
 			state._fsp--;
 
@@ -942,7 +942,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:82:9: ';'
 					{
-					match(input,18,FOLLOW_18_in_ptvg481); 
+					match(input,18,FOLLOW_18_in_ptvg479); 
 					}
 					break;
 				case 2 :
@@ -970,12 +970,12 @@ public class projetParser extends Parser {
 			// projet.g:86:7: ( 'debut' instructions 'fin' )
 			// projet.g:86:9: 'debut' instructions 'fin'
 			{
-			match(input,30,FOLLOW_30_in_corps499); 
-			pushFollow(FOLLOW_instructions_in_corps501);
+			match(input,30,FOLLOW_30_in_corps497); 
+			pushFollow(FOLLOW_instructions_in_corps499);
 			instructions();
 			state._fsp--;
 
-			match(input,40,FOLLOW_40_in_corps503); 
+			match(input,40,FOLLOW_40_in_corps501); 
 			}
 
 		}
@@ -996,9 +996,9 @@ public class projetParser extends Parser {
 			// projet.g:89:8: ( 'fixe' '(' pf ( ';' pf )* ')' )
 			// projet.g:89:10: 'fixe' '(' pf ( ';' pf )* ')'
 			{
-			match(input,41,FOLLOW_41_in_parfixe515); 
-			match(input,10,FOLLOW_10_in_parfixe517); 
-			pushFollow(FOLLOW_pf_in_parfixe519);
+			match(input,41,FOLLOW_41_in_parfixe513); 
+			match(input,10,FOLLOW_10_in_parfixe515); 
+			pushFollow(FOLLOW_pf_in_parfixe517);
 			pf();
 			state._fsp--;
 
@@ -1015,8 +1015,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:89:26: ';' pf
 					{
-					match(input,18,FOLLOW_18_in_parfixe523); 
-					pushFollow(FOLLOW_pf_in_parfixe525);
+					match(input,18,FOLLOW_18_in_parfixe521); 
+					pushFollow(FOLLOW_pf_in_parfixe523);
 					pf();
 					state._fsp--;
 
@@ -1028,7 +1028,7 @@ public class projetParser extends Parser {
 				}
 			}
 
-			match(input,11,FOLLOW_11_in_parfixe529); 
+			match(input,11,FOLLOW_11_in_parfixe527); 
 			}
 
 		}
@@ -1049,11 +1049,11 @@ public class projetParser extends Parser {
 			// projet.g:92:5: ( type ident ( ',' ident )* )
 			// projet.g:92:7: type ident ( ',' ident )*
 			{
-			pushFollow(FOLLOW_type_in_pf543);
+			pushFollow(FOLLOW_type_in_pf541);
 			type();
 			state._fsp--;
 
-			pushFollow(FOLLOW_ident_in_pf545);
+			pushFollow(FOLLOW_ident_in_pf543);
 			ident();
 			state._fsp--;
 
@@ -1070,8 +1070,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:92:21: ',' ident
 					{
-					match(input,14,FOLLOW_14_in_pf550); 
-					pushFollow(FOLLOW_ident_in_pf552);
+					match(input,14,FOLLOW_14_in_pf548); 
+					pushFollow(FOLLOW_ident_in_pf550);
 					ident();
 					state._fsp--;
 
@@ -1103,9 +1103,9 @@ public class projetParser extends Parser {
 			// projet.g:95:9: ( 'mod' '(' pm ( ';' pm )* ')' )
 			// projet.g:95:11: 'mod' '(' pm ( ';' pm )* ')'
 			{
-			match(input,44,FOLLOW_44_in_parmod570); 
-			match(input,10,FOLLOW_10_in_parmod572); 
-			pushFollow(FOLLOW_pm_in_parmod574);
+			match(input,44,FOLLOW_44_in_parmod568); 
+			match(input,10,FOLLOW_10_in_parmod570); 
+			pushFollow(FOLLOW_pm_in_parmod572);
 			pm();
 			state._fsp--;
 
@@ -1122,8 +1122,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:95:26: ';' pm
 					{
-					match(input,18,FOLLOW_18_in_parmod578); 
-					pushFollow(FOLLOW_pm_in_parmod580);
+					match(input,18,FOLLOW_18_in_parmod576); 
+					pushFollow(FOLLOW_pm_in_parmod578);
 					pm();
 					state._fsp--;
 
@@ -1135,7 +1135,7 @@ public class projetParser extends Parser {
 				}
 			}
 
-			match(input,11,FOLLOW_11_in_parmod584); 
+			match(input,11,FOLLOW_11_in_parmod582); 
 			}
 
 		}
@@ -1156,11 +1156,11 @@ public class projetParser extends Parser {
 			// projet.g:98:5: ( type ident ( ',' ident )* )
 			// projet.g:98:7: type ident ( ',' ident )*
 			{
-			pushFollow(FOLLOW_type_in_pm598);
+			pushFollow(FOLLOW_type_in_pm596);
 			type();
 			state._fsp--;
 
-			pushFollow(FOLLOW_ident_in_pm600);
+			pushFollow(FOLLOW_ident_in_pm598);
 			ident();
 			state._fsp--;
 
@@ -1177,8 +1177,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:98:21: ',' ident
 					{
-					match(input,14,FOLLOW_14_in_pm605); 
-					pushFollow(FOLLOW_ident_in_pm607);
+					match(input,14,FOLLOW_14_in_pm603); 
+					pushFollow(FOLLOW_ident_in_pm605);
 					ident();
 					state._fsp--;
 
@@ -1210,7 +1210,7 @@ public class projetParser extends Parser {
 			// projet.g:102:3: ( instruction ( ';' instruction )* )
 			// projet.g:102:5: instruction ( ';' instruction )*
 			{
-			pushFollow(FOLLOW_instruction_in_instructions626);
+			pushFollow(FOLLOW_instruction_in_instructions624);
 			instruction();
 			state._fsp--;
 
@@ -1227,8 +1227,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:102:19: ';' instruction
 					{
-					match(input,18,FOLLOW_18_in_instructions630); 
-					pushFollow(FOLLOW_instruction_in_instructions632);
+					match(input,18,FOLLOW_18_in_instructions628); 
+					pushFollow(FOLLOW_instruction_in_instructions630);
 					instruction();
 					state._fsp--;
 
@@ -1311,7 +1311,7 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:106:5: inssi
 					{
-					pushFollow(FOLLOW_inssi_in_instruction649);
+					pushFollow(FOLLOW_inssi_in_instruction647);
 					inssi();
 					state._fsp--;
 
@@ -1320,7 +1320,7 @@ public class projetParser extends Parser {
 				case 2 :
 					// projet.g:107:5: inscond
 					{
-					pushFollow(FOLLOW_inscond_in_instruction655);
+					pushFollow(FOLLOW_inscond_in_instruction653);
 					inscond();
 					state._fsp--;
 
@@ -1329,7 +1329,7 @@ public class projetParser extends Parser {
 				case 3 :
 					// projet.g:108:5: boucle
 					{
-					pushFollow(FOLLOW_boucle_in_instruction661);
+					pushFollow(FOLLOW_boucle_in_instruction659);
 					boucle();
 					state._fsp--;
 
@@ -1338,7 +1338,7 @@ public class projetParser extends Parser {
 				case 4 :
 					// projet.g:109:5: lecture
 					{
-					pushFollow(FOLLOW_lecture_in_instruction667);
+					pushFollow(FOLLOW_lecture_in_instruction665);
 					lecture();
 					state._fsp--;
 
@@ -1347,7 +1347,7 @@ public class projetParser extends Parser {
 				case 5 :
 					// projet.g:110:5: ecriture
 					{
-					pushFollow(FOLLOW_ecriture_in_instruction673);
+					pushFollow(FOLLOW_ecriture_in_instruction671);
 					ecriture();
 					state._fsp--;
 
@@ -1356,7 +1356,7 @@ public class projetParser extends Parser {
 				case 6 :
 					// projet.g:111:5: affouappel
 					{
-					pushFollow(FOLLOW_affouappel_in_instruction679);
+					pushFollow(FOLLOW_affouappel_in_instruction677);
 					affouappel();
 					state._fsp--;
 
@@ -1387,14 +1387,14 @@ public class projetParser extends Parser {
 			// projet.g:115:7: ( 'si' expression 'alors' instructions ( 'sinon' instructions )? 'fsi' )
 			// projet.g:115:9: 'si' expression 'alors' instructions ( 'sinon' instructions )? 'fsi'
 			{
-			match(input,51,FOLLOW_51_in_inssi696); 
-			pushFollow(FOLLOW_expression_in_inssi698);
+			match(input,51,FOLLOW_51_in_inssi694); 
+			pushFollow(FOLLOW_expression_in_inssi696);
 			expression();
 			state._fsp--;
 
 			PtGen.pt(28);
-			match(input,25,FOLLOW_25_in_inssi702); 
-			pushFollow(FOLLOW_instructions_in_inssi704);
+			match(input,25,FOLLOW_25_in_inssi700); 
+			pushFollow(FOLLOW_instructions_in_inssi702);
 			instructions();
 			state._fsp--;
 
@@ -1408,8 +1408,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:115:63: 'sinon' instructions
 					{
-					match(input,52,FOLLOW_52_in_inssi707); 
-					pushFollow(FOLLOW_instructions_in_inssi710);
+					match(input,52,FOLLOW_52_in_inssi705); 
+					pushFollow(FOLLOW_instructions_in_inssi708);
 					instructions();
 					state._fsp--;
 
@@ -1420,7 +1420,7 @@ public class projetParser extends Parser {
 			}
 
 			PtGen.pt(30);
-			match(input,42,FOLLOW_42_in_inssi717); 
+			match(input,42,FOLLOW_42_in_inssi715); 
 			}
 
 		}
@@ -1441,14 +1441,14 @@ public class projetParser extends Parser {
 			// projet.g:118:9: ( 'cond' expression ':' instructions ( ',' expression ':' instructions )* ( 'aut' instructions |) 'fcond' )
 			// projet.g:118:11: 'cond' expression ':' instructions ( ',' expression ':' instructions )* ( 'aut' instructions |) 'fcond'
 			{
-			match(input,28,FOLLOW_28_in_inscond731); 
-			pushFollow(FOLLOW_expression_in_inscond734);
+			match(input,28,FOLLOW_28_in_inscond729); 
+			pushFollow(FOLLOW_expression_in_inscond732);
 			expression();
 			state._fsp--;
 
 			PtGen.pt(28);
-			match(input,16,FOLLOW_16_in_inscond738); 
-			pushFollow(FOLLOW_instructions_in_inscond740);
+			match(input,16,FOLLOW_16_in_inscond736); 
+			pushFollow(FOLLOW_instructions_in_inscond738);
 			instructions();
 			state._fsp--;
 
@@ -1465,15 +1465,15 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:119:12: ',' expression ':' instructions
 					{
-					match(input,14,FOLLOW_14_in_inscond753); 
+					match(input,14,FOLLOW_14_in_inscond751); 
 					PtGen.pt(33);
-					pushFollow(FOLLOW_expression_in_inscond757);
+					pushFollow(FOLLOW_expression_in_inscond755);
 					expression();
 					state._fsp--;
 
 					PtGen.pt(28);
-					match(input,16,FOLLOW_16_in_inscond761); 
-					pushFollow(FOLLOW_instructions_in_inscond763);
+					match(input,16,FOLLOW_16_in_inscond759); 
+					pushFollow(FOLLOW_instructions_in_inscond761);
 					instructions();
 					state._fsp--;
 
@@ -1506,8 +1506,8 @@ public class projetParser extends Parser {
 					// projet.g:120:12: 'aut' instructions
 					{
 					PtGen.pt(33);
-					match(input,26,FOLLOW_26_in_inscond781); 
-					pushFollow(FOLLOW_instructions_in_inscond784);
+					match(input,26,FOLLOW_26_in_inscond779); 
+					pushFollow(FOLLOW_instructions_in_inscond782);
 					instructions();
 					state._fsp--;
 
@@ -1522,7 +1522,7 @@ public class projetParser extends Parser {
 			}
 
 			PtGen.pt(35);
-			match(input,39,FOLLOW_39_in_inscond804); 
+			match(input,39,FOLLOW_39_in_inscond802); 
 			}
 
 		}
@@ -1543,20 +1543,20 @@ public class projetParser extends Parser {
 			// projet.g:124:9: ( 'ttq' expression 'faire' instructions 'fait' )
 			// projet.g:124:11: 'ttq' expression 'faire' instructions 'fait'
 			{
-			match(input,53,FOLLOW_53_in_boucle819); 
+			match(input,53,FOLLOW_53_in_boucle817); 
 			PtGen.pt(31);
-			pushFollow(FOLLOW_expression_in_boucle824);
+			pushFollow(FOLLOW_expression_in_boucle822);
 			expression();
 			state._fsp--;
 
 			PtGen.pt(28);
-			match(input,36,FOLLOW_36_in_boucle828); 
-			pushFollow(FOLLOW_instructions_in_boucle830);
+			match(input,36,FOLLOW_36_in_boucle826); 
+			pushFollow(FOLLOW_instructions_in_boucle828);
 			instructions();
 			state._fsp--;
 
 			PtGen.pt(32);
-			match(input,37,FOLLOW_37_in_boucle834); 
+			match(input,37,FOLLOW_37_in_boucle832); 
 			}
 
 		}
@@ -1577,9 +1577,9 @@ public class projetParser extends Parser {
 			// projet.g:127:8: ( 'lire' '(' ident ( ',' ident )* ')' )
 			// projet.g:127:10: 'lire' '(' ident ( ',' ident )* ')'
 			{
-			match(input,43,FOLLOW_43_in_lecture847); 
-			match(input,10,FOLLOW_10_in_lecture849); 
-			pushFollow(FOLLOW_ident_in_lecture851);
+			match(input,43,FOLLOW_43_in_lecture845); 
+			match(input,10,FOLLOW_10_in_lecture847); 
+			pushFollow(FOLLOW_ident_in_lecture849);
 			ident();
 			state._fsp--;
 
@@ -1597,8 +1597,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:127:45: ',' ident
 					{
-					match(input,14,FOLLOW_14_in_lecture858); 
-					pushFollow(FOLLOW_ident_in_lecture860);
+					match(input,14,FOLLOW_14_in_lecture856); 
+					pushFollow(FOLLOW_ident_in_lecture858);
 					ident();
 					state._fsp--;
 
@@ -1611,7 +1611,7 @@ public class projetParser extends Parser {
 				}
 			}
 
-			match(input,11,FOLLOW_11_in_lecture867); 
+			match(input,11,FOLLOW_11_in_lecture865); 
 			}
 
 		}
@@ -1632,9 +1632,9 @@ public class projetParser extends Parser {
 			// projet.g:130:9: ( 'ecrire' '(' expression ( ',' expression )* ')' )
 			// projet.g:130:11: 'ecrire' '(' expression ( ',' expression )* ')'
 			{
-			match(input,33,FOLLOW_33_in_ecriture880); 
-			match(input,10,FOLLOW_10_in_ecriture882); 
-			pushFollow(FOLLOW_expression_in_ecriture884);
+			match(input,33,FOLLOW_33_in_ecriture878); 
+			match(input,10,FOLLOW_10_in_ecriture880); 
+			pushFollow(FOLLOW_expression_in_ecriture882);
 			expression();
 			state._fsp--;
 
@@ -1652,8 +1652,8 @@ public class projetParser extends Parser {
 				case 1 :
 					// projet.g:130:54: ',' expression
 					{
-					match(input,14,FOLLOW_14_in_ecriture891); 
-					pushFollow(FOLLOW_expression_in_ecriture893);
+					match(input,14,FOLLOW_14_in_ecriture889); 
+					pushFollow(FOLLOW_expression_in_ecriture891);
 					expression();
 					state._fsp--;
 
@@ -1666,7 +1666,7 @@ public class projetParser extends Parser {
 				}
 			}
 
-			match(input,11,FOLLOW_11_in_ecriture900); 
+			match(input,11,FOLLOW_11_in_ecriture898); 
 			}
 
 		}
@@ -1687,7 +1687,7 @@ public class projetParser extends Parser {
 			// projet.g:134:3: ( ident ( ':=' expression | ( effixes ( effmods )? )? ) )
 			// projet.g:134:5: ident ( ':=' expression | ( effixes ( effmods )? )? )
 			{
-			pushFollow(FOLLOW_ident_in_affouappel916);
+			pushFollow(FOLLOW_ident_in_affouappel914);
 			ident();
 			state._fsp--;
 
