@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // $ANTLR 3.5.2 projet.g 2021-04-12 16:07:04
+=======
+// $ANTLR 3.5.2 projet.g 2021-04-14 15:19:49
+>>>>>>> Stashed changes
 
 import org.antlr.runtime.*;
 import java.util.Stack;
