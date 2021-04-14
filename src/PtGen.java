@@ -1,4 +1,3 @@
-
 /*********************************************************************************
  * VARIABLES ET METHODES FOURNIES PAR LA CLASSE UtilLex (cf libClass_Projet)     *
  *       complement Ã  l'ANALYSEUR LEXICAL produit par ANTLR                      *
@@ -117,7 +116,7 @@ public class PtGen {
 
 	// MERCI de renseigner ici un nom pour le trinome, constitue EXCLUSIVEMENT DE
 	// LETTRES
-	public static String trinome = "XxxYyyZzz";
+	public static String trinome = "CalonneLeMoan";
 
 	private static int tCour; // type de l'expression compilee
 	private static int vCour; // sert uniquement lors de la compilation d'une valeur (entiere ou boolenne)
@@ -230,19 +229,15 @@ public class PtGen {
 
 		case 1: // consts
 			if (presentIdent(1) == 0) {
-				// Ajouter
-				if (tCour == ENT)
-					placeIdent(UtilLex.numIdCourant, CONSTANTE, ENT, vCour);
-				else if (tCour == BOOL)
-					placeIdent(UtilLex.numIdCourant, CONSTANTE, BOOL, vCour);
+				placeIdent(UtilLex.numIdCourant, CONSTANTE, tCour, vCour);
 			} else {
 				UtilLex.messErr("Constante deja declaree.");
 			}
 			break;
 
-		case 2:
+		case 2: // vars
 			if (presentIdent(1) == 0) {
-				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, cptVarGlobales);
+				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, vCour);
 				cptVarGlobales++;
 			} else {
 				UtilLex.messErr("Variable deja declaree");
@@ -370,7 +365,6 @@ public class PtGen {
 
 		// Affectation de la valeur d'une expression a une variable
 		case 34:
-			int ancienNumId = UtilLex.numIdCourant;
 			UtilLex.numIdCourant = pileRep.depiler();
 			if (presentIdent(1) == 0) {
 				UtilLex.messErr("ident non present");
@@ -392,7 +386,6 @@ public class PtGen {
 					if (identCat == PARAMMOD)
 						po.produire(1);
 				}
-				UtilLex.numIdCourant = ancienNumId;
 			}
 
 		// Gestion de primaire

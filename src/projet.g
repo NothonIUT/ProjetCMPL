@@ -64,7 +64,7 @@ specif  : ident  ( 'fixe' '(' type  ( ',' type  )* ')' )?
                  ( 'mod'  '(' type  ( ',' type  )* ')' )? 
   ;
   
-consts  : 'const' ( ident  '=' valeur {PtGen.pt(1);}  ptvg  )+ ;
+consts  : 'const' ( ident  '=' valeur ptvg {PtGen.pt(1);} )+ ;
   
 vars  : 'var' ( type ident {PtGen.pt(2);} ( ','  ident  {PtGen.pt(2);})* ptvg  )+
   ;
