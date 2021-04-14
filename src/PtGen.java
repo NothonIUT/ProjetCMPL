@@ -229,15 +229,7 @@ public class PtGen {
 
 		case 1: // consts
 			if (presentIdent(1) == 0) {
-				// Ajouter
-<<<<<<< Updated upstream
-				if (tCour == ENT)
-					placeIdent(UtilLex.numIdCourant, CONSTANTE, ENT, vCour);
-				else if (tCour == BOOL)
-					placeIdent(UtilLex.numIdCourant, CONSTANTE, BOOL, vCour);
-=======
 				placeIdent(UtilLex.numIdCourant, CONSTANTE, tCour, vCour);
->>>>>>> Stashed changes
 			} else {
 				UtilLex.messErr("Constante deja declaree.");
 			}
@@ -245,11 +237,7 @@ public class PtGen {
 
 		case 2: // vars
 			if (presentIdent(1) == 0) {
-<<<<<<< Updated upstream
-				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, cptVarGlobales);
-=======
 				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, vCour);
->>>>>>> Stashed changes
 				cptVarGlobales++;
 			} else {
 				UtilLex.messErr("Variable deja declaree");
@@ -375,14 +363,8 @@ public class PtGen {
 			po.produire(DIV);
 			break;
 
-<<<<<<< Updated upstream
-		// Affectation de la valeur d'une expression à une variable
-		case 34:
-			int ancienNumId = UtilLex.numIdCourant;
-=======
 		// Affectation de la valeur d'une expression a une variable
 		case 34:
->>>>>>> Stashed changes
 			UtilLex.numIdCourant = pileRep.depiler();
 			if (presentIdent(1) == 0) {
 				UtilLex.messErr("ident non present");
@@ -390,11 +372,7 @@ public class PtGen {
 				int identCat = tabSymb[UtilLex.numIdCourant].categorie;
 				if (identCat == CONSTANTE || identCat == PARAMFIXE) {
 					UtilLex.messErr(
-<<<<<<< Updated upstream
-							"ident non modifiable. L'ident ne doit pas être une constante ou un parametre fixe");
-=======
 							"ident non modifiable. L'ident ne doit pas ï¿½tre une constante ou un parametre fixe");
->>>>>>> Stashed changes
 				}
 				if (identCat == VARGLOBALE) {
 					po.produire(AFFECTERG);
@@ -408,10 +386,6 @@ public class PtGen {
 					if (identCat == PARAMMOD)
 						po.produire(1);
 				}
-<<<<<<< Updated upstream
-				UtilLex.numIdCourant = ancienNumId;
-=======
->>>>>>> Stashed changes
 			}
 
 		// Gestion de primaire
@@ -494,11 +468,7 @@ public class PtGen {
 		
 		// fincond, rebranchement des BINCOND
 		case 35 : 
-<<<<<<< Updated upstream
-			int ipo_bincond = pileRep.depiler(); // ipo du bincond à rebrancher
-=======
 			int ipo_bincond = pileRep.depiler(); // ipo du bincond ï¿½ rebrancher
->>>>>>> Stashed changes
 			int ipo_fincond = po.getIpo() + 1; // ipo auquel brancher le bincond
 			while(pileRep.depiler() != 0) {
 				po.modifier(ipo_bincond, ipo_fincond);
