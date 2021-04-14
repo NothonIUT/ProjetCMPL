@@ -365,7 +365,6 @@ public class PtGen {
 
 		// Affectation de la valeur d'une expression a une variable
 		case 34:
-			UtilLex.numIdCourant = pileRep.depiler();
 			if (presentIdent(1) == 0) {
 				UtilLex.messErr("ident non present");
 			} else {
