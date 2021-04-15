@@ -60,7 +60,7 @@ public class PtGen {
 			TRANSDON = 1, TRANSCODE = 2, REFEXT = 3;
 
 	private static int cptVarGlobales;
-
+	private static int cptArgs;
 	// utilitaires de controle de type
 	// -------------------------------
 	/**
@@ -237,8 +237,12 @@ public class PtGen {
 
 		case 2: // vars
 			if (presentIdent(1) == 0) {
-				placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, vCour);
-				cptVarGlobales++;
+				if (bc == 1) {
+					placeIdent(UtilLex.numIdCourant, VARGLOBALE, tCour, vCour);
+					cptVarGlobales++;
+				}else {
+					placeIdent(UtilLex.numIdCourant, VARLOCALE, tCour, vCour);
+				}
 			} else {
 				UtilLex.messErr("Variable deja declaree");
 			}
@@ -375,11 +379,11 @@ public class PtGen {
 				}
 				if (identCat == VARGLOBALE) {
 					po.produire(AFFECTERG);
-					po.produire(UtilLex.numIdCourant);
+					po.produire(tabSymb[UtilLex.numIdCourant].code);
 				}
 				else if(identCat == VARLOCALE || identCat == PARAMMOD) {
 					po.produire(AFFECTERL);
-					po.produire(UtilLex.numIdCourant);
+					po.produire(tabSymb[UtilLex.numIdCourant].code);
 					if (identCat == VARLOCALE)
 						po.produire(0);
 					if (identCat == PARAMMOD)
@@ -405,13 +409,25 @@ public class PtGen {
 
 			case CONSTANTE:
 				po.produire(EMPILER);
+				po.produire(tabSymb[id_ident].code);
 				break;
 
 			case VARGLOBALE:
 				po.produire(CONTENUG);
+				po.produire(tabSymb[id_ident].code);
 				break;
 
-			// Il reste les variables locales a gerer
+			case VARLOCALE:
+				po.produire(CONTENUL);
+				po.produire(tabSymb[id_ident].code);
+				po.produire(0);
+				
+			case PARAMMOD:
+				po.produire(CONTENUL);
+				po.produire(tabSymb[id_ident].code);
+				po.produire(1);
+			
+
 			}
 
 			// Branchements conditionnels
@@ -490,7 +506,77 @@ public class PtGen {
 				ipo_bincond = pileRep.depiler();
 			}
 			break;
+		// Declaration des Procédures
+		case 39 :
+            if (presentIdent(1) == 0) {
+                placeIdent(UtilLex.numIdCourant, PROC, NEUTRE, po.getIpo() + 1);
+                placeIdent(-1, PRIVEE, NEUTRE, 0);
+                bc = it + 1;
+                cptArgs = 0;
+            }
+            else UtilLex.messErr("La procedure a deja ete declaree !");
+            break;
 
+        case 40 :
+            if (presentIdent(bc) == 0) {
+                placeIdent(UtilLex.numIdCourant, PARAMFIXE, tCour, cptArgs);
+                cptArgs++;
+            }
+            else UtilLex.messErr("Le parametre fixe a deja ete declare.");
+            break;
+
+        case 41:
+            if (presentIdent(bc) == 0) {
+                placeIdent(UtilLex.numIdCourant, PARAMMOD, tCour, cptArgs);
+                cptArgs++;
+            }
+            else UtilLex.messErr("Le parametre modifiable a deja ete declare.");
+            break;
+
+        case 42:
+            EltTabSymb ligneParams = tabSymb[bc - 1];
+            ligneParams.info = cptArgs;
+            break;
+            
+        case 43:
+
+            po.produire(RETOUR);
+            po.produire(cptArgs);
+
+            it = bc + cptArgs - 1;
+
+            for (int i = it ; i >= bc ; i--) {
+                tabSymb[i].code = -1;
+            }
+
+            bc = 1;
+            break;
+           
+        case 44:
+        	int id_ident_cat = tabSymb[UtilLex.numIdCourant].categorie;
+        	int ident_adr = tabSymb[UtilLex.numIdCourant].code;
+        	switch(id_ident_cat) {
+        	
+	        	case VARGLOBALE:
+	        		po.produire(EMPILERADG);
+	        		po.produire(ident_adr);
+	        		break;
+	        		
+	        	case VARLOCALE:
+	        		po.produire(EMPILERADL);
+	        		po.produire(ident_adr);
+	        		po.produire(0);
+	        		break;
+	        	
+	        	case PARAMMOD:
+	        		po.produire(EMPILERADL);
+	        		po.produire(ident_adr);
+	        		po.produire(1);
+	        		break;
+        	}
+        	
+        	break;
+        	
 		case 255:
 			afftabSymb(); // affichage de la table des symboles en fin de compilation
 			break;
