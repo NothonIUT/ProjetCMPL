@@ -455,21 +455,37 @@ public class PtGen {
 		
 		// Debut cond
 			
-		// Rebanchement du BSIFAUX et production du BINCOND
+		// Creation du premier BSIFAUX au debut du cond
 		case 33:
-			int ipo_bsifaux = pileRep.depiler();
+			po.produire(BSIFAUX);
+			po.produire(0); // valeur bidon a changer plus tard
 			pileRep.empiler(po.getIpo());
-			po.produire(BINCOND);
+			break;
+		
+		// Rebanchement du BSIFAUX et production du BINCOND
+		case 35 :
+			po.produire(BINCOND); // On produit un BINCOND au cas ou le BSIFAUX precedent n'a pas ete pris
 			po.produire(0);
-			po.modifier(ipo_bsifaux, po.getIpo() + 1);
+		
+			pileRep.empiler(po.getIpo()); // On empile l'ipo pour modifier la valeur du BINCOND plus tard
+			
+			int ipo_bsifaux_prec = pileRep.depiler(); // ipo du BSIFAUX precedent dont on doit modifier la valeur
+			po.modifier(ipo_bsifaux_prec, po.getIpo() + 1);
 			
 			break;
 		
+		// Gestion du 'aut'
+		case 38 :
+			int ipo_bsifaux = pileRep.depiler(); // ipo du BSIFAUX precedent dont on doit modifier la valeur
+			po.modifier(ipo_bsifaux, po.getIpo() + 1);
+			
+			break;
+			
 		// fincond, rebranchement des BINCOND
-		case 35 : 
-			int ipo_bincond = pileRep.depiler(); // ipo du bincond � rebrancher
+		case 36 : 
+			int ipo_bincond = pileRep.depiler(); // ipo du bincond  a rebrancher
 			int ipo_fincond = po.getIpo() + 1; // ipo auquel brancher le bincond
-			while(pileRep.depiler() != 0) {
+			while(ipo_bincond == 0) {
 				po.modifier(ipo_bincond, ipo_fincond);
 				ipo_bincond = pileRep.depiler();
 			}
